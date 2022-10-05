@@ -12,7 +12,7 @@ using Shouldly;
 namespace SagaChallenge.UnitTests;
 
 [TestClass]
-public class IdempotentPaymentProviderApiTests
+public class Assigment1Tests
 {
     [TestMethod]
     public async Task SameTransactionIdIsUsedAfterCrash()
