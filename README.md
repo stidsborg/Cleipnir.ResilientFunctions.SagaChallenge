@@ -13,9 +13,9 @@ Using Resilient Functions automatically retries crashed order invocations and pr
 You can add all the properties to the scrapbook type you need to ensure the order flow executes correctly. Also a scrapbook can be saved at any time by invoking its Save-method - thereby ensuring that its state will be available from that point onwards despite crashes and restarts. 
 
 You have 2 requirements:
-1. The payment provider api accepts a client generated transaction id for all its endpoints.
-2. You must ensure that the same id is used for the same order despite the order-flow crashing and restarting.
-The logistics service responsible for shipping products to customers must be called at most once.
+1. The payment provider api accepts a client generated transaction id for all its endpoints. 
+You must ensure that the same id is used for the same order despite the order-flow crashing and restarting.
+2. The logistics service responsible for shipping products to customers must be called at most once.
 If the order flow crashes while waiting for a reply from the logistics service the order must be flagged for manual handling by throwing an exception.
 
 A friendly colleague has already created several tests asserting if the implementation violates the requirements. 
