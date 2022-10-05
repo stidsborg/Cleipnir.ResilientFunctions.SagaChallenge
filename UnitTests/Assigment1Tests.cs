@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SagaChallenge.Clients;
-using Shouldly;
 
 namespace SagaChallenge.UnitTests;
 
@@ -37,17 +36,32 @@ public class Assigment1Tests
             paymentProviderClientMock.Object, logisticsClientMock.Object, emailClientMock.Object
         );
 
-        await Should.ThrowAsync<TimeoutException>(
-            () => orderProcessor.ProcessOrder(order, scrapbook)
-        );
+        Exception? thrownException = null;
+        try
+        {
+            await orderProcessor.ProcessOrder(order, scrapbook);
+        }
+        catch (Exception exception)
+        {
+            thrownException = exception;
+        }
+        if (thrownException == null)
+            Assert.Fail("Process order invocation was expected to throw exception when payment provider invocation fails");
 
-        transactionIds.Count.ShouldBe(1);
-        
         scrapbook = scrapbook.Snapshot ?? new Scrapbook();
-        await Should.ThrowAsync<TimeoutException>(
-            () => orderProcessor.ProcessOrder(order, scrapbook)
-        );
         
+        thrownException = null;
+        try
+        {
+            await orderProcessor.ProcessOrder(order, scrapbook);
+        }
+        catch (Exception exception)
+        {
+            thrownException = exception;
+        }
+        if (thrownException == null)
+            Assert.Fail("Second process order invocation was expected to throw exception as payment provider invocation fails");
+
         if (transactionIds.Any(id => id == Guid.Empty))
             Assert.Fail("Transaction id must be different to empty Guid");
         
