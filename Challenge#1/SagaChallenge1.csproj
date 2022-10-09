@@ -16,8 +16,7 @@
     
     <ItemGroup>
       <Reference Include="Cleipnir.ResilientFunctions">
-        <HintPath>Dlls\Cleipnir.ResilientFunctions.dll</HintPath>
+        <HintPath>..\Dlls\Cleipnir.ResilientFunctions.dll</HintPath>
       </Reference>
     </ItemGroup>
-
 </Project>
