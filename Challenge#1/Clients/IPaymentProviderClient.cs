@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace SagaChallenge.Clients;
+namespace SagaChallenge1.Clients;
 
 public interface IPaymentProviderClient
 {

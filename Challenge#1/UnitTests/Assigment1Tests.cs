@@ -6,9 +6,9 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using SagaChallenge.Clients;
+using SagaChallenge1.Clients;
 
-namespace SagaChallenge.UnitTests;
+namespace SagaChallenge1.UnitTests;
 
 [TestClass]
 public class Assigment1Tests

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cleipnir.ResilientFunctions.Domain;
-using SagaChallenge.Clients;
+using SagaChallenge1.Clients;
 
-namespace SagaChallenge;
+namespace SagaChallenge1;
 
 public class OrderProcessor
 {
