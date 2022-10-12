@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaChallenge1", "Challenge#1\SagaChallenge1.csproj", "{C916CECF-E271-455C-ABD7-C031E5E48454}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaChallenge2", "Challenge#2\SagaChallenge2.csproj", "{6C61EB99-A332-42E9-8CE9-181439F14A6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{C916CECF-E271-455C-ABD7-C031E5E48454}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C916CECF-E271-455C-ABD7-C031E5E48454}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C916CECF-E271-455C-ABD7-C031E5E48454}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C61EB99-A332-42E9-8CE9-181439F14A6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C61EB99-A332-42E9-8CE9-181439F14A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C61EB99-A332-42E9-8CE9-181439F14A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C61EB99-A332-42E9-8CE9-181439F14A6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
