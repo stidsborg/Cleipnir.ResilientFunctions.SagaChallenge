@@ -18,6 +18,7 @@ public class Assigment1Tests
     {
         var transactionIds = new List<Guid>();
         var scrapbook = new Scrapbook();
+        await scrapbook.Save();
 
         var paymentProviderClientMock = new Mock<IPaymentProviderClient>();
         paymentProviderClientMock
