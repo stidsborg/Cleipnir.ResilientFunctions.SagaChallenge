@@ -15,6 +15,6 @@ However, a critical thing to note:
 
 It is emphasized the "existing" orders must be handled correctly by the new version of the code. All existing order can be assigned the brand AbcLavpris. 
 
-A friendly colleague has created a console-application which you can use to verify you new order processing logic.
+A friendly colleague has created a test-application which you can use to verify the new order processing logic.
 
 Best of luck!
