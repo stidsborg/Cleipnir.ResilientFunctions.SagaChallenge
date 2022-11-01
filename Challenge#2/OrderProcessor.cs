@@ -24,6 +24,9 @@ public class OrderProcessor
         await _paymentProviderClient.Capture(scrapbook.TransactionId);
         await _emailClient.SendOrderConfirmation(order.CustomerId, orderBrand, order.ProductIds);
     }
+    
+    public static object GetOrderWithBrand(string orderId, Brand brand, Guid customerId, IEnumerable<Guid> productIds, decimal totalPrice)
+        => throw new NotImplementedException(); //todo implement this method to allow tests complete
 
     public record Order(string OrderId, Guid CustomerId, IEnumerable<Guid> ProductIds, decimal TotalPrice);
 
