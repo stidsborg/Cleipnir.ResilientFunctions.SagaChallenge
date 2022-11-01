@@ -32,7 +32,7 @@ public class Assigment1Tests
             await (Task)processOrderMethodInfo!.Invoke(orderProcessor, new[] { order, scrapbook })!;
 
             logisticsClientMock
-                .Verify(c => c.ShipProducts(customerId, Brand.AbcLavpris, productIds), Times.Once);
+                .Verify(c => c.ShipProducts(customerId, brand, productIds), Times.Once);
             paymentProviderClientMock
                 .Verify(p => p.Capture(It.IsAny<Guid>()), Times.Once);
             paymentProviderClientMock
