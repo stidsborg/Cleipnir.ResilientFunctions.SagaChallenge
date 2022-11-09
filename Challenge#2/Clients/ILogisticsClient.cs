@@ -2,5 +2,5 @@
 
 public interface ILogisticsClient
 {
-    Task ShipProducts(Guid customerId, Brand brand, IEnumerable<Guid> productIds);
+    Task ShipProducts(string orderId, Guid customerId, Brand brand, IEnumerable<Guid> productIds);
 }

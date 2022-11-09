@@ -32,15 +32,13 @@ public class Assigment1Tests
             await (Task)processOrderMethodInfo!.Invoke(orderProcessor, new[] { order, scrapbook })!;
 
             logisticsClientMock
-                .Verify(c => c.ShipProducts(customerId, brand, productIds), Times.Once);
+                .Verify(c => c.ShipProducts("MK-123", customerId, brand, productIds), Times.Once);
             paymentProviderClientMock
                 .Verify(p => p.Capture(It.IsAny<Guid>()), Times.Once);
             paymentProviderClientMock
                 .Verify(p => p.Reserve(It.IsAny<Guid>(), 125M), Times.Once);
             emailClientMock
                 .Verify(e => e.SendOrderConfirmation(customerId, brand, productIds));
-            logisticsClientMock
-                .Verify(l => l.ShipProducts(customerId, brand, productIds));
         }
     }
     
@@ -54,14 +52,14 @@ public class Assigment1Tests
             var logisticsClientMock = new Mock<ILogisticsClient>();
             var emailClientMock = new Mock<IEmailClient>();
 
-            var orderId = Guid.NewGuid();
+            var orderId = Guid.NewGuid().ToString();
             var customerId = Guid.NewGuid();
             var productId1 = Guid.NewGuid();
             var productId2 = Guid.NewGuid();
             const decimal totalPrice = 123M;
             
             var json = @"{""OrderId"":""ORDER_ID"", ""CustomerId"":""CUSTOMER_ID"",""ProductIds"":[""PRODUCT_ID1"",""PRODUCT_ID2""], ""TotalPrice"": TOTAL_PRICE}"
-                .Replace("ORDER_ID", orderId.ToString())
+                .Replace("ORDER_ID", orderId)
                 .Replace("CUSTOMER_ID", customerId.ToString())
                 .Replace("PRODUCT_ID1", productId1.ToString())
                 .Replace("PRODUCT_ID2", productId2.ToString())
@@ -80,6 +78,7 @@ public class Assigment1Tests
             
             logisticsClientMock.Verify(c =>
                 c.ShipProducts(
+                    orderId,
                     customerId,
                     Brand.AbcLavpris,
                     products
@@ -91,8 +90,6 @@ public class Assigment1Tests
                 .Verify(p => p.Reserve(It.IsAny<Guid>(), totalPrice), Times.Once);
             emailClientMock
                 .Verify(e => e.SendOrderConfirmation(customerId, Brand.AbcLavpris, products));
-            logisticsClientMock
-                .Verify(l => l.ShipProducts(customerId, Brand.AbcLavpris, products));
     }
 
     private class Scrapbook : OrderProcessor.Scrapbook
