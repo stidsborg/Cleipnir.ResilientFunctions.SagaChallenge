@@ -18,7 +18,7 @@ public class OrderProcessor
 
     public async Task ProcessOrder(Order order, Scrapbook scrapbook)
     {
-        var orderBrand = Brand.Unknown;
+        var orderBrand = Brand.AbcLavpris;
         await _paymentProviderClient.Reserve(scrapbook.TransactionId, order.TotalPrice);
         await _logisticsClient.ShipProducts(order.OrderId, order.CustomerId, orderBrand, order.ProductIds);
         await _paymentProviderClient.Capture(scrapbook.TransactionId);

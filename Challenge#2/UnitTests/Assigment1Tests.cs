@@ -14,8 +14,6 @@ public class Assigment1Tests
     {
         foreach (Brand brand in Enum.GetValues(typeof(Brand)))
         {
-            if (brand == Brand.Unknown) continue;
-            
             var scrapbook = new Scrapbook();
             await scrapbook.Save();
 
