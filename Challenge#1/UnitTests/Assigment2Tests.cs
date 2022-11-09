@@ -98,6 +98,56 @@ public class Assigment2Tests
             Assert.Fail("Expected subsequent order processing invocation to fail when logistics service timed-out in previous invocation");
     }
     
+    [TestMethod]
+    public async Task LogisticsServiceIsNotCalledAgainAfterSuccessfulCompletionAndSubsequentReInvocation()
+    {
+        Scrapbook? scrapbookWhenSendingEmail = null;
+        var scrapbook = new Scrapbook();
+        var paymentProviderClientMock = new Mock<IPaymentProviderClient>();
+        var logisticsClientMock = new Mock<ILogisticsClient>();
+        var emailClientMock = new Mock<IEmailClient>();
+        emailClientMock
+            .Setup(c =>
+                c.SendOrderConfirmation(It.IsAny<Guid>(), It.IsAny<IEnumerable<Guid>>())
+            )
+            .Callback<Guid, IEnumerable<Guid>>((_, _) => scrapbookWhenSendingEmail ??= (scrapbook.Snapshot ?? new Scrapbook()))
+            .Throws<TimeoutException>();
+
+        var customerId = Guid.NewGuid();
+        var productIds = new[] { Guid.NewGuid(), Guid.NewGuid() };
+        var order = new OrderProcessor.Order("MK-123", customerId, productIds, TotalPrice: 125M);
+
+        var orderProcessor = new OrderProcessor(
+            paymentProviderClientMock.Object, logisticsClientMock.Object, emailClientMock.Object
+        );
+
+        Exception? thrownException = null;
+        try
+        {
+            await orderProcessor.ProcessOrder(order, scrapbook);
+        }
+        catch (Exception exception)
+        {
+            thrownException = exception;
+        }
+        if (thrownException == null)
+            Assert.Fail("Process order invocation was expected to throw exception when email service invocation fails");
+
+        var shipProductsInvoked = false;
+        logisticsClientMock = new Mock<ILogisticsClient>();
+        logisticsClientMock
+            .Setup(c => c.ShipProducts(It.IsAny<Guid>(), It.IsAny<IEnumerable<Guid>>()))
+            .Callback<Guid, IEnumerable<Guid>>((_, _) => shipProductsInvoked = true);
+        emailClientMock = new Mock<IEmailClient>();
+        paymentProviderClientMock = new Mock<IPaymentProviderClient>();
+
+        orderProcessor = new OrderProcessor(paymentProviderClientMock.Object, logisticsClientMock.Object, emailClientMock.Object);
+        await orderProcessor.ProcessOrder(order, scrapbookWhenSendingEmail!);
+        
+        if (shipProductsInvoked)
+            Assert.Fail("ShipProducts was invoked again after crash");
+    }
+    
     private class Scrapbook : OrderProcessor.Scrapbook
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
