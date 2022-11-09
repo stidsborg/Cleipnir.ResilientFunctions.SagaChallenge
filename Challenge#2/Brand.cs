@@ -2,8 +2,9 @@
 
 public enum Brand
 {
-    AbcLavpris,
-    DanskSuperMarked,
-    Coop,
-    Rema1000
+    Unknown = 0,
+    AbcLavpris = 1,
+    DanskSuperMarked = 2,
+    Coop = 3,
+    Rema1000 = 4
 }
