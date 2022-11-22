@@ -9,7 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cleipnir.ResilientFunctions" Version="0.0.7" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
         <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
         <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
@@ -19,6 +18,9 @@
     <ItemGroup>
       <Reference Include="Cleipnir.ResilientFunctions">
         <HintPath>..\Dlls\Cleipnir.ResilientFunctions.dll</HintPath>
+      </Reference>
+      <Reference Include="System.Reactive">
+        <HintPath>..\Dlls\System.Reactive.dll</HintPath>
       </Reference>
     </ItemGroup>
 
