@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaChallenge2", "Challenge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaChallenge3", "Challenge#3\SagaChallenge3.csproj", "{47D8129B-27C5-46EB-A863-877FB217B762}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderWebApi", "Sample\AspNet\OrderWebApi.csproj", "{20C7C89A-73E4-4288-AC4A-71C0347A9C98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderWebApi", "Sample\OrderWebApi\OrderWebApi.csproj", "{20C7C89A-73E4-4288-AC4A-71C0347A9C98}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{418E2FD5-2875-4C5A-AA44-ABE92C0B1FC5}"
 EndProject
