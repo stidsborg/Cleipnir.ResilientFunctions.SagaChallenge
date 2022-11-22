@@ -8,8 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "Cleipnir.ResilientFunctions.AspNetCore.Postgres/1.0.0": {
         "dependencies": {
-          "Cleipnir.ResilientFunctions.AspNetCore.Core": "0.0.9",
-          "Cleipnir.ResilientFunctions.PostgreSQL": "0.0.9"
+          "Cleipnir.ResilientFunctions.AspNetCore.Core": "0.0.4",
+          "Cleipnir.ResilientFunctions.PostgreSQL": "0.0.4"
         },
         "runtime": {
           "Cleipnir.ResilientFunctions.AspNetCore.Postgres.dll": {}
@@ -482,7 +482,7 @@
           "System.Text.Encodings.Web": "6.0.0"
         }
       },
-      "Cleipnir.ResilientFunctions/0.0.9": {
+      "Cleipnir.ResilientFunctions/0.0.4": {
         "dependencies": {
           "System.Reactive": "5.0.0"
         },
@@ -490,9 +490,9 @@
           "Cleipnir.ResilientFunctions.dll": {}
         }
       },
-      "Cleipnir.ResilientFunctions.AspNetCore.Core/0.0.9": {
+      "Cleipnir.ResilientFunctions.AspNetCore.Core/0.0.4": {
         "dependencies": {
-          "Cleipnir.ResilientFunctions": "0.0.9",
+          "Cleipnir.ResilientFunctions": "0.0.4",
           "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.Extensions.Hosting": "6.0.1"
         },
@@ -500,9 +500,9 @@
           "Cleipnir.ResilientFunctions.AspNetCore.Core.dll": {}
         }
       },
-      "Cleipnir.ResilientFunctions.PostgreSQL/0.0.9": {
+      "Cleipnir.ResilientFunctions.PostgreSQL/0.0.4": {
         "dependencies": {
-          "Cleipnir.ResilientFunctions": "0.0.9",
+          "Cleipnir.ResilientFunctions": "0.0.4",
           "Npgsql": "6.0.7"
         },
         "runtime": {
@@ -790,17 +790,17 @@
       "path": "system.text.json/6.0.0",
       "hashPath": "system.text.json.6.0.0.nupkg.sha512"
     },
-    "Cleipnir.ResilientFunctions/0.0.9": {
+    "Cleipnir.ResilientFunctions/0.0.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Cleipnir.ResilientFunctions.AspNetCore.Core/0.0.9": {
+    "Cleipnir.ResilientFunctions.AspNetCore.Core/0.0.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Cleipnir.ResilientFunctions.PostgreSQL/0.0.9": {
+    "Cleipnir.ResilientFunctions.PostgreSQL/0.0.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
