@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaChallenge1", "Challenge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaChallenge2", "Challenge#2\SagaChallenge2.csproj", "{6C61EB99-A332-42E9-8CE9-181439F14A6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaChallenge3", "Challenge#3\SagaChallenge3.csproj", "{47D8129B-27C5-46EB-A863-877FB217B762}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{6C61EB99-A332-42E9-8CE9-181439F14A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C61EB99-A332-42E9-8CE9-181439F14A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C61EB99-A332-42E9-8CE9-181439F14A6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47D8129B-27C5-46EB-A863-877FB217B762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47D8129B-27C5-46EB-A863-877FB217B762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47D8129B-27C5-46EB-A863-877FB217B762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47D8129B-27C5-46EB-A863-877FB217B762}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
