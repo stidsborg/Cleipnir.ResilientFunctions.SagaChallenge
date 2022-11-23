@@ -1,6 +1,8 @@
 using Cleipnir.ResilientFunctions.AspNetCore.Core;
 using Cleipnir.ResilientFunctions.AspNetCore.Postgres;
 using Cleipnir.ResilientFunctions.PostgreSQL;
+using OrderWebApi.Middleware.CorrelationId;
+using OrderWebApi.Middleware.Logging;
 using Serilog;
 using Serilog.Events;
 
@@ -26,15 +28,20 @@ internal static class Program
         //add this line register Resilient Functions' dependencies
         builder.Services.UseResilientFunctions( 
             Settings.ConnectionString,
-            _ => new Options(
-                unhandledExceptionHandler: rfe => Log.Logger.Error(rfe, "ResilientFrameworkException occured"),
-                crashedCheckFrequency: TimeSpan.FromSeconds(1)
-            )
-        );
+            _ =>
+            {
+                var options = new Options(
+                    unhandledExceptionHandler: rfe => Log.Logger.Error(rfe, "ResilientFrameworkException occured"),
+                    crashedCheckFrequency: TimeSpan.FromSeconds(1)
+                );
+                //uncomment to enable logging middleware: options.UseMiddleware(new LogInvocationMiddleware());
+                //uncomment to enable correlationid middleware: options.UseMiddleware<Middleware.CorrelationId.ResilientFunctionsMiddleware>();
+                return options;
+            });
         
         builder.Host.UseSerilog();
         builder.Services.AddControllers();
-
+        builder.Services.AddCorrelationIdMiddleware();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
@@ -42,6 +49,7 @@ internal static class Program
         
         app.UseSwagger();
         app.UseSwaggerUI();
+        app.UseMiddleware<AspNetCorrelationIdMiddleware>();
         
         app.MapControllers();
 

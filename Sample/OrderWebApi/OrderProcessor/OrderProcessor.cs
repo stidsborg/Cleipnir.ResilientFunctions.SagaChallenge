@@ -38,15 +38,11 @@ public class OrderProcessor : IRegisterRFuncOnInstantiation
 
         public async Task ProcessOrder(Order order)
         {
-            Log.Logger.ForContext<OrderProcessor>().Information($"ORDER_PROCESSOR: Processing of order '{order.OrderId}' started");
-
             var transactionId = Guid.NewGuid();
             await _paymentProviderClient.Reserve(order.CustomerId, transactionId, order.TotalPrice);
             await _logisticsClient.ShipProducts(order.CustomerId, order.ProductIds);
             await _paymentProviderClient.Capture(transactionId);
             await _emailClient.SendOrderConfirmation(order.CustomerId, order.ProductIds);
-
-            Log.Logger.ForContext<OrderProcessor>().Information($"ORDER_PROCESSOR: Processing of order '{order.OrderId}' completed");
         }        
     }
 }
