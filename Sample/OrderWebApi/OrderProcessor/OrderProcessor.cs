@@ -1,7 +1,6 @@
 ﻿using Cleipnir.ResilientFunctions;
 using Cleipnir.ResilientFunctions.AspNetCore.Core;
 using Cleipnir.ResilientFunctions.Domain;
-using Serilog;
 
 namespace OrderWebApi.OrderProcessor;
 
