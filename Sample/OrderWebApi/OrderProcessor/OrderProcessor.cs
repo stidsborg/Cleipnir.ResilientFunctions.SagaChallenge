@@ -8,6 +8,7 @@ namespace OrderWebApi.OrderProcessor;
 public class OrderProcessor : IRegisterRFuncOnInstantiation
 {
     public RAction.Invoke<Order, RScrapbook> ProcessOrder { get; }
+    public ControlPanels<Order, RScrapbook> ControlPanels { get; }
 
     public OrderProcessor(RFunctions rFunctions)
     {
@@ -19,6 +20,7 @@ public class OrderProcessor : IRegisterRFuncOnInstantiation
             );
 
         ProcessOrder = registration.Invoke;
+        ControlPanels = registration.ControlPanels;
     }
 
     public class Inner
@@ -38,7 +40,7 @@ public class OrderProcessor : IRegisterRFuncOnInstantiation
         {
             Log.Logger.ForContext<OrderProcessor>().Information($"ORDER_PROCESSOR: Processing of order '{order.OrderId}' started");
 
-            var transactionId = Guid.Empty;
+            var transactionId = Guid.NewGuid();
             await _paymentProviderClient.Reserve(order.CustomerId, transactionId, order.TotalPrice);
             await _logisticsClient.ShipProducts(order.CustomerId, order.ProductIds);
             await _paymentProviderClient.Capture(transactionId);
