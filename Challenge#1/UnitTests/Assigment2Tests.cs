@@ -142,8 +142,15 @@ public class Assigment2Tests
         paymentProviderClientMock = new Mock<IPaymentProviderClient>();
 
         orderProcessor = new OrderProcessor(paymentProviderClientMock.Object, logisticsClientMock.Object, emailClientMock.Object);
-        await orderProcessor.ProcessOrder(order, scrapbookWhenSendingEmail!);
-        
+        try
+        {
+            await orderProcessor.ProcessOrder(order, scrapbookWhenSendingEmail!);
+        }
+        catch (Exception)
+        {
+            // ignored
+        }
+
         if (shipProductsInvoked)
             Assert.Fail("ShipProducts was invoked again after crash");
     }
