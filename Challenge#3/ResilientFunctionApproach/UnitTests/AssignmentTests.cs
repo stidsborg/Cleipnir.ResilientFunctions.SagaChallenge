@@ -1,8 +1,6 @@
-using Cleipnir.ResilientFunctions.CoreRuntime.Invocation;
-using Cleipnir.ResilientFunctions.CoreRuntime.ParameterSerialization;
 using Cleipnir.ResilientFunctions.Domain;
-using Cleipnir.ResilientFunctions.Messaging;
 using Cleipnir.ResilientFunctions.Storage;
+using Cleipnir.ResilientFunctions.Testing;
 
 namespace SagaChallenge3.ResilientFunctionApproach.UnitTests;
 
@@ -13,21 +11,8 @@ public class AssignmentTests
     public async Task SunshineScenarioCompletes()
     {
         var functionId = new FunctionId("OrderProcessor", "MK-4321");
-        var inMemoryEventStore = new InMemoryEventStore();
-        var eventSourceWriter = new EventSourceWriter(functionId, inMemoryEventStore, DefaultSerializer.Instance);
-
-        async Task<EventSource> CreateEventSource()
-        {
-            var eventSource = new EventSource(
-                functionId,
-                inMemoryEventStore,
-                eventSourceWriter,
-                pullFrequency: default,
-                DefaultSerializer.Instance
-            );
-            await eventSource.Initialize();
-            return eventSource;
-        }
+        var inMemoryFunctionStore = new InMemoryFunctionStore();
+        var testHelper = new TestHelper(inMemoryFunctionStore).For(functionId);
         
         void HandleSentMessage(object sentMessage, MessageBroker messageBroker)
         {
@@ -42,8 +27,8 @@ public class AssignmentTests
             };
 
             if (response == null) return;
-            
-            eventSourceWriter.Append(response);
+
+            testHelper.EventSourceWriter.AppendEvent(response);
         }
         
         var messageBroker = new MessageBroker(HandleSentMessage);
@@ -56,9 +41,7 @@ public class AssignmentTests
         );
         var scrapbook = new OrderProcessor.Scrapbook();
 
-        var context = new Context(functionId, InvocationMode.Direct, CreateEventSource);
-
-        await orderProcessor.ProcessOrder(order, scrapbook, context);
+        await orderProcessor.ProcessOrder(order, scrapbook, testHelper.Context);
 
         var messages = messageBroker.Messages;
         VerifyCommandMessageOrder(messages);

@@ -1,7 +1,5 @@
-﻿using System.Reactive.Linq;
-using Cleipnir.ResilientFunctions.CoreRuntime.Invocation;
+﻿using Cleipnir.ResilientFunctions.CoreRuntime.Invocation;
 using Cleipnir.ResilientFunctions.Domain;
-using Cleipnir.ResilientFunctions.Messaging;
 
 namespace SagaChallenge3.ResilientFunctionApproach;
 
